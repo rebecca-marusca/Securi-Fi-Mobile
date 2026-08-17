@@ -1,0 +1,14 @@
+catre eu din viitor  -  securi-fi
+
+eroare “securi-fi-app no longer available” -- ios only (cred)
+
+step 1 - npx expo run:ios --device
+step 2 - xcode -> project securifiapp -> targets securifiapp -> disable and reenable Automatically manage signing -> Team Rebecca Marusca
+step 3 - pe telefon -> settings -> general -> VPN & Device Management -> Trust pe mine
+
+resetting node_modules 
+
+step 1 - rm -rf node_modules
+step 2 - npm install
+
+ce nu merge si nu am chef sa rezolv acum
