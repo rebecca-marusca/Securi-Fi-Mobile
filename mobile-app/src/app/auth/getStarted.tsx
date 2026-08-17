@@ -1,3 +1,7 @@
+// This file manages the Get started screen, the first thing the user sees in the app upon first load, if they aren't authenticated.
+// It contains our logo and a button that sends the user through the authentication process.
+// To-do: Add animations - Polish, so not a priority
+
 import { Image, StyleSheet, View, Text, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
   glassButton: {
     width: "100%",
     height: 50,
-    backgroundColor:colors.accent,
+    backgroundColor: colors.accent,
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
@@ -84,9 +88,5 @@ const styles = StyleSheet.create({
     color: colors.base,
     fontSize: 17,
     fontFamily: 'SF-Pro-Text-Semibold'
-  },
-
-  pressedState: {
-    backgroundColor: colors.lightBlue,
   },
 });
