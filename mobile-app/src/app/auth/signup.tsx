@@ -1,3 +1,7 @@
+// This screen manages the Sign Up screen, where the user is sent upon entering an email that isn't linked to an account.
+// It asks for the user's Name, Phone Number and Password/ConfirmPassword
+// To-do: Add animations - Polish, so not a priority
+
 import { useState } from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet, Image, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
@@ -16,15 +20,15 @@ export default function SignupScreen() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleContinue = async () => {
-    if (!name.trim() || !phone.trim() || !password || !confirmPassword) {
+    if (!name.trim() || !phone.trim() || !password || !confirmPassword) { // if all fields aren't filled
       setError('Fill in all fields to continue');
       return;
     }
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword) { 
       setError('Passwords don\u2019t match');
       return;
     }
-    if (password.length < 6) {
+    if (password.length < 6) { // To-do: change password conditions - Polish, so not a priority
       setError('Password must be at least 6 characters');
       return;
     }
@@ -61,7 +65,7 @@ export default function SignupScreen() {
   return (
     <KeyboardAvoidingView
        style={styles.container}
-       behavior={Platform.OS === "ios" ? "padding" : undefined}
+       behavior={Platform.OS === "ios" ? "padding" : undefined} // To-do: Need to add support for Android devices
     >
       <ScrollView 
             contentContainerStyle={styles.scrollContent}

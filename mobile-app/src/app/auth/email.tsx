@@ -1,3 +1,8 @@
+// This file manages the Email Screen, where the user is sent after Get started.
+// They will enter their email, and afterwards, based on whether or not they have an account linked to that email,
+// they'll either be sent to the sign-up screen (if no account is found with said email), or a password prompt will appear.
+// To-do: Add animations - Polish, so not a priority
+
 import { useState, useRef } from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet, Keyboard, Image, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -23,7 +28,7 @@ export default function EmailScreen() {
   const forgotPasswordSheetRef = useRef<BottomSheet>(null);
 
   const handleEmailContinue = async () => {
-    if (!email.trim()) {
+    if (!email.trim()) { // if the user didn't enter an email, they can't advance
       setError('Enter your email to continue');
       return;
     }
@@ -53,7 +58,7 @@ export default function EmailScreen() {
   };
 
   const handlePasswordContinue = async () => {
-    if (!password) {
+    if (!password) { // if the user didn't enter a password, they can't advance
       setError('Enter your password to continue');
       return;
     }
@@ -86,7 +91,7 @@ export default function EmailScreen() {
   return (
 	<KeyboardAvoidingView
 		style={styles.container}
-		behavior={Platform.OS === "ios" ? "padding" : undefined}
+		behavior={Platform.OS === "ios" ? "padding" : undefined}  // To-do: Need to add support for Android devices
 	>
 		<ScrollView 
 			contentContainerStyle={styles.scrollContent}
