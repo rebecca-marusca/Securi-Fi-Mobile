@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect }  from 'react';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import AnimatedWaveHeader from '../../components/AnimatedWaveHeader';
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -6,20 +6,33 @@ import SecuriFiTextLightGreen from "../../../assets/images/securi-fi-text-lightG
 import { colors } from "@/theme/colors";
 import RoomNodeGraph from '../../components/RoomNodeGraph';
 import { LinearGradient } from "expo-linear-gradient";
+import { useUserProfile } from "@/hooks/useUserProfile";
+
+function getGreeting(): string {
+  const hour = new Date().getHours();
+  if (hour > 5 && hour < 12) return "Good morning";
+  if (hour < 18) return "Good afternoon";
+  return "Good evening";
+}
 
 const HomeScreen: React.FC = () => {
+  const { profile } = useUserProfile();
+  const [ greeting, setGreeting ] = useState(getGreeting());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGreeting(getGreeting());
+    }, 60_000);
+    return () => clearInterval(interval);
+    }, []);
+
   return (
     
     <View style={styles.container}>
-      <AnimatedWaveHeader />
+      <AnimatedWaveHeader/>
           <ScrollView contentContainerStyle={styles.scrollContent}>
             <View style={styles.headerTextContainer}>
-              <Image 
-                source={SecuriFiTextLightGreen} 
-                style={styles.logoImage}
-                resizeMode= "cover"
-              />
-              <Text style={styles.subtitle}>Good afternoon, Natalia!</Text>
+              <Text style={styles.subtitle}>{greeting}, {profile?.displayName}! </Text>
             </View>
 
             <RoomNodeGraph
@@ -46,26 +59,21 @@ const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EAEFE9',
+    backgroundColor: colors.base,
   },
   scrollContent: {
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 100,
   },
   headerTextContainer: {
     alignItems: 'center',
     marginBottom: 30,
     zIndex: 10,
   },
-  logoImage: {
-    width: 220,     // Adjust width as needed
-    height: 40,     // Adjust height as needed
-    marginBottom: 0
-  },
   subtitle: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 20,
+    fontFamily: "SF-Pro-Text-Semibold",
     color: colors.accent,
     marginTop: 70,
   },
@@ -73,15 +81,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 320,
     backgroundColor: colors.bgSecondary2,
-    borderRadius: 20,
-    borderWidth: 2,
+    borderRadius: 30,
+    borderWidth: 5,
     borderColor: colors.accent,
     justifyContent: 'center',
     alignItems: 'center',
   },
   cardPlaceholderText: {
     color: colors.accent,
-    fontWeight: '600',
+    fontFamily: "SF-Pro-Text-Semibold",
   },
   statusPill: {
     backgroundColor: 'rgb(64, 144, 79)',
@@ -91,9 +99,9 @@ const styles = StyleSheet.create({
     marginTop: -3,
   },
   statusText: {
-    color: colors.white,
-    fontWeight: '600',
-    fontSize: 14,
+    color: colors.base,
+    fontFamily: "SF-Pro-Text-Semibold",
+    fontSize: 15,
   },
     innerShadowGradient: {
     position: "absolute",
