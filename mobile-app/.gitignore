@@ -44,3 +44,5 @@ example
 
 GoogleService-Info.plist
 google-services.json
+
+.DS_Store

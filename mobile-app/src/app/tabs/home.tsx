@@ -30,7 +30,7 @@ const HomeScreen: React.FC = () => {
     
     <View style={styles.container}>
       <AnimatedWaveHeader/>
-          <ScrollView contentContainerStyle={styles.scrollContent}>
+          <View style={styles.content}>
             <View style={styles.headerTextContainer}>
               <Text style={styles.subtitle}>{greeting}, {profile?.displayName}! </Text>
             </View>
@@ -51,7 +51,7 @@ const HomeScreen: React.FC = () => {
               <Text style={styles.statusText}>No movement detected</Text>
             </View>
 
-          </ScrollView>
+          </View>
     </View>
   );
 };
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.base,
   },
-  scrollContent: {
+  content: {
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingTop: 100,
