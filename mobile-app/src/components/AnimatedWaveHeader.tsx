@@ -64,23 +64,33 @@ function WaveLayer({
   );
 };
 
-export default function AnimatedWaveHeader() {
+type AnimatedWaveHeaderProps = {
+  color1?: string;
+  color2?: string;
+  color3?: string;
+};
+
+export default function AnimatedWaveHeader({
+  color3 = colors.greenWave3,
+  color2 = colors.greenWave2,
+  color1 = colors.greenWave1,
+}: AnimatedWaveHeaderProps) {
   return (
     <View style={styles.headerContainer}>
       <WaveLayer
-        color="#386A5A"
+        color={color3}
         opacity={0.4}
         duration={16000}
         height={140}
       />
       <WaveLayer
-        color="#2D5A4C"
+        color={color2}
         opacity={0.7}
         duration={12000}
         height={130}
       />
       <WaveLayer
-        color="#1E4438"
+        color={color1}
         opacity={1.0}
         duration={8000}
         height={120}

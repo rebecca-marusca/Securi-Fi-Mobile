@@ -143,13 +143,13 @@ export default function EmailScreen() {
 		>
 			<Text style={styles.buttonText}>{isSubmitting ? 'Please wait…' : 'Continue'}</Text>
 		</Pressable>
-
-		<ForgotPasswordSheet
-			ref={forgotPasswordSheetRef}
-			onClose={() => setSheetVisible(false)}
-			initialEmail={email.trim()}
-		/>
 		</ScrollView>
+
+    <ForgotPasswordSheet
+      ref={forgotPasswordSheetRef}
+      onClose={() => setSheetVisible(false)}
+      initialEmail={email.trim()}
+    />
 	</KeyboardAvoidingView>
   );
 }

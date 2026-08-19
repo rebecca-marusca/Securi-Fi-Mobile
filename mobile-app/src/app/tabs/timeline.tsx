@@ -1,17 +1,19 @@
 import { colors } from "@/theme/colors";
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
+import AnimatedWaveHeader from "@/components/AnimatedWaveHeader"
 
 export default function TimelineScreen() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: colors.base,
-      }}
-    >
-      <Text>Timeline — coming soon</Text>
+    <View style={styles.container}>
+      <AnimatedWaveHeader/>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.base,
+    alignItems: "center",
+  }
+});
