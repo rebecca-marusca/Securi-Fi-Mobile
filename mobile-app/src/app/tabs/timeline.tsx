@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingTop: 150,
-    paddingBottom: 200
+    paddingBottom: 121 /// trust am facut niste matematica foarte smart ca sa ajung la 121 deci pls dont change
   },
   endText: {
     paddingTop: 16,

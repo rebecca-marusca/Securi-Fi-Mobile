@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   date: {
     fontFamily: 'SF-Pro-Text-Regular',
     fontSize: 15,
-    color: colors.textMuted,
+    color: colors.text,
     marginBottom: 2,
   },
   title: {
