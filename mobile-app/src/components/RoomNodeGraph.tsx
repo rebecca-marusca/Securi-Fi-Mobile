@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   editBtn: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.base,
     paddingHorizontal: 19,
     paddingVertical: 6,
     borderRadius: 14,
@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   editBtnTextActive: {
-    color: colors.white,
+    color: colors.base,
   },
   canvas: {
     height: 320,
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
     borderRadius: NODE_RADIUS,
     borderWidth: 5,
     borderColor: colors.accent,
-    backgroundColor: colors.white,
+    backgroundColor: colors.base,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
