@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   label: {
     flex: 1,
     fontFamily: "SF-Pro-Text-Semibold",
-    fontSize: 18,
+    fontSize: 17,
     color: colors.text,
   },
 });

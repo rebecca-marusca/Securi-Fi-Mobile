@@ -1,4 +1,4 @@
-import React, {useState, useEffect }  from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import AnimatedWaveHeader from '../../components/AnimatedWaveHeader';
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -21,54 +21,54 @@ function getGreeting(): string {
 const HomeScreen: React.FC = () => {
   const { user } = useAuth();
   const { profile } = useUserProfile();
-  const [ greeting, setGreeting ] = useState(getGreeting());
+  const [greeting, setGreeting] = useState(getGreeting());
   const [prefs, setPrefs] = useState<ArmedNode>(
-      armedNodes
-    );
+    armedNodes
+  );
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setGreeting(getGreeting());
-  }, 60_000);
-  return () => clearInterval(interval);
-}, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGreeting(getGreeting());
+    }, 60_000);
+    return () => clearInterval(interval);
+  }, []);
 
-const handleToggle = async (key: keyof ArmedNode, value: boolean) => {
+  const handleToggle = async (key: keyof ArmedNode, value: boolean) => {
     if (!user) return;
     const updated = { ...prefs, [key]: value };
     setPrefs(updated);
-}
+  }
 
   return (
-    
+
     <View style={styles.container}>
-      <AnimatedWaveHeader/>
-          <View style={styles.content}>
-            <View style={styles.headerTextContainer}>
-              <Text style={styles.subtitle}>{greeting}, {profile?.displayName}! </Text>
-            </View>
+      <AnimatedWaveHeader />
+      <View style={styles.content}>
+        <View style={styles.headerTextContainer}>
+          <Text style={styles.subtitle}>{greeting}, {profile?.displayName}! </Text>
+        </View>
 
-            <RoomNodeGraph
-              initialNodes={[
-                { id: 'kitchen', name: 'kitchen', x: 0.28, y: 0.45 },
-                { id: 'living-room', name: 'living room', x: 0.72, y: 0.28 },
-                { id: 'bedroom', name: 'bedroom', x: 0.58, y: 0.75 },
-              ]}
-            />
+        <RoomNodeGraph
+          initialNodes={[
+            { id: 'kitchen', name: 'kitchen', x: 0.28, y: 0.45 },
+            { id: 'living-room', name: 'living room', x: 0.72, y: 0.28 },
+            { id: 'bedroom', name: 'bedroom', x: 0.58, y: 0.75 },
+          ]}
+        />
 
-            <View style={styles.statusPill}>
-              <LinearGradient
-                colors={["rgba(5, 33, 2, 0.25)", "transparent"]}
-                style={styles.innerShadowGradient}
-              />
-              <Text style={styles.statusText}>No movement detected</Text>
-            </View>
-            <FinalToggleRow
-              label={prefs.armed ? "All Armed" : "All Disarmed"}
-              value={prefs.armed}
-              onValueChange={(v) => handleToggle("armed", v)}
-            />
-          </View>
+        <View style={styles.statusPill}>
+          <LinearGradient
+            colors={["rgba(5, 33, 2, 0.25)", "transparent"]}
+            style={styles.innerShadowGradient}
+          />
+          <Text style={styles.statusText}>No movement detected</Text>
+        </View>
+        <FinalToggleRow
+          label={prefs.armed ? "All Armed" : "All Disarmed"}
+          value={prefs.armed}
+          onValueChange={(v) => handleToggle("armed", v)}
+        />
+      </View>
     </View>
   );
 };
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     fontFamily: "SF-Pro-Text-Semibold",
     fontSize: 15,
   },
-    innerShadowGradient: {
+  innerShadowGradient: {
     position: "absolute",
     top: 0,
     left: 0,
