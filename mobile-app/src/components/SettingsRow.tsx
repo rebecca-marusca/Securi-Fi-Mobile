@@ -26,7 +26,7 @@ export function SettingsRow({
         <SymbolView
           name="chevron.right"
           size={15}
-          tintColor={colors.darkGreen}
+          tintColor={colors.accent}
           weight="bold"
         />
       )}
