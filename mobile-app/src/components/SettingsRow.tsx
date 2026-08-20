@@ -39,7 +39,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: colors.white,
+    backgroundColor: colors.bgSecondary1,
+    borderColor: colors.bgSecondary2,
+    borderWidth: 1,
     width: 325,
     height: 60,
     borderRadius: 10,
@@ -52,7 +54,9 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 10,
-    backgroundColor: colors.base,
+    backgroundColor: colors.bgSecondary1,
+    borderColor: colors.bgSecondary2,
+    borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
     marginRight: 12,
@@ -64,3 +68,4 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
 });
+

@@ -98,6 +98,8 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     alignSelf: "center",
     marginBottom: 16,
+    borderColor: colors.textMuted,
+    borderWidth: 3,
   },
   name: {
     fontFamily: "SF-Pro-Text-Bold",
@@ -107,3 +109,4 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   }
 });
+
