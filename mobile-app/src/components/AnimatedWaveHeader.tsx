@@ -76,30 +76,46 @@ export default function AnimatedWaveHeader({
   color1 = colors.greenWave1,
 }: AnimatedWaveHeaderProps) {
   return (
-    <View style={styles.headerContainer}>
-      <WaveLayer
-        color={color3}
-        opacity={0.4}
-        duration={16000}
-        height={140}
-      />
-      <WaveLayer
-        color={color2}
-        opacity={0.7}
-        duration={12000}
-        height={130}
-      />
-      <WaveLayer
-        color={color1}
-        opacity={1.0}
-        duration={8000}
-        height={120}
-      />
+    <View style={styles.outerContainer}>
+      <View style={[styles.topExtension, { backgroundColor: color1 }]} />
+      <View style={styles.headerContainer}>
+        <WaveLayer
+          color={color3}
+          opacity={0.4}
+          duration={16000}
+          height={140}
+        />
+        <WaveLayer
+          color={color2}
+          opacity={0.7}
+          duration={12000}
+          height={130}
+        />
+        <WaveLayer
+          color={color1}
+          opacity={1.0}
+          duration={8000}
+          height={120}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+  },
+  topExtension: {
+    position: 'absolute',
+    top: -1000,
+    left: 0,
+    right: 0,
+    height: 1000,
+  },
   headerContainer: {
     position: 'absolute',
     top: 0,

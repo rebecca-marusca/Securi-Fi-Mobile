@@ -15,6 +15,7 @@ export function ToggleRow({ label, value, onValueChange }: ToggleRowProps) {
         value={value}
         onValueChange={onValueChange}
         trackColor={{ false: "#C4C4C7", true: colors.accent }}
+        ios_backgroundColor="#C4C4C7"
         thumbColor={colors.white}
       />
     </View>
@@ -33,6 +34,7 @@ export function FinalToggleRow({
         value={value}
         onValueChange={onValueChange}
         trackColor={{ false: "#C4C4C7", true: colors.accent }}
+        ios_backgroundColor="#C4C4C7"
         thumbColor={colors.white}
       />
     </View>
@@ -56,8 +58,9 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: "SF-Pro-Text-Regular",
-    fontSize: 16,
+    fontSize: 15,
     color: colors.text,
     paddingHorizontal: 10
   },
 });
+

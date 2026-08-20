@@ -128,7 +128,9 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   card: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.bgSecondary1,
+    borderColor: colors.bgSecondary2,
+    borderWidth: 1,
     borderRadius: 16,
     paddingHorizontal: 16,
   },

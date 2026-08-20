@@ -1,9 +1,10 @@
+import AnimatedWaveHeader from "@/components/AnimatedWaveHeader";
 import { SettingsRow } from "@/components/SettingsRow";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { colors } from "@/theme/colors";
 import { useRouter } from "expo-router";
-import { Alert, Image, Linking, ScrollView, StyleSheet, Text } from "react-native";
+import { Alert, Image, Linking, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const router = useRouter();
 
@@ -34,6 +35,7 @@ export default function ProfileScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <AnimatedWaveHeader/>
       <Image
         source={
           profile?.photoURL
@@ -85,7 +87,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.base,
-    paddingTop: 60,
   },
   content: {
     paddingHorizontal: 20,
@@ -98,6 +99,9 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     alignSelf: "center",
     marginBottom: 16,
+    borderColor: colors.textMuted,
+    borderWidth: 3,
+    marginTop: 60,
   },
   name: {
     fontFamily: "SF-Pro-Text-Bold",
@@ -107,3 +111,4 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   }
 });
+
