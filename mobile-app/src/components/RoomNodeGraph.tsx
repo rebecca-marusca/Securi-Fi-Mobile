@@ -1,43 +1,17 @@
 import React, { useCallback, useMemo, useState, useEffect, useRef } from 'react';
-import {
-  View,
-  Text,
-  Pressable,
-  StyleSheet,
-  LayoutChangeEvent,
-  StyleProp,
-  ViewStyle,
-  PanResponder,
-  Animated,
-  Easing,
-} from 'react-native';
+import {View,Text,Pressable,StyleSheet,LayoutChangeEvent,StyleProp,ViewStyle,PanResponder,Animated,Easing,} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { colors } from "@/theme/colors";
 import { LinearGradient } from "expo-linear-gradient";
-
-/* Types -------------------------------------------------------------------------- */
-
-export interface RoomNode {
-  id: string;
-  name: string;
-  x: number;
-  y: number;
-}
+import {RoomNode, DEFAULT_NODES} from "@/services/userProfile";
 
 interface RoomNodeGraphProps {
   initialNodes?: RoomNode[];
   style?: StyleProp<ViewStyle>;
 }
-
-/* Defaults & Constants ----------------------------------------------------------- */
-
 const STORAGE_KEY = '@room_nodes_positions_v1';
 
-const DEFAULT_NODES: RoomNode[] = [
-  { id: 'kitchen', name: 'kitchen', x: 0.75, y: 0.35 },
-  { id: 'living-room', name: 'living room', x: 0.25, y: 0.35 },
-  { id: 'bedroom', name: 'bedroom', x: 0.25, y: 0.75 },
-];
+
 
 const NODE_RADIUS = 20;
 const RANGE_RADIUS = 80;
@@ -323,12 +297,12 @@ const styles = StyleSheet.create({
   },
   rangeCircle: {
     position: 'absolute',
-    backgroundColor: 'rgba(20, 117, 36, 0.33)',
+    backgroundColor: 'rgb(255, 0, 0)',
   },
   pulseWave: {
-    backgroundColor: 'rgba(15, 157, 39, 0.43)',
-    borderWidth: 1.5,
-    borderColor: colors.accent,
+    backgroundColor: 'rgba(0, 216, 36, 0.33)',
+    borderWidth: 5,
+    borderColor: 'rgba(0, 216, 36, 0.12)',
   },
   nodeCircle: {
     width: NODE_RADIUS * 2,

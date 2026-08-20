@@ -7,6 +7,9 @@ import { colors } from "@/theme/colors";
 import RoomNodeGraph from '../../components/RoomNodeGraph';
 import { LinearGradient } from "expo-linear-gradient";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { FinalToggleRow } from "@/components/ToggleRow";
+import { ArmedNode, armedNodes } from '@/services/userProfile';
+import { useAuth } from '@/contexts/AuthContext';
 
 function getGreeting(): string {
   const hour = new Date().getHours();
@@ -16,15 +19,25 @@ function getGreeting(): string {
 }
 
 const HomeScreen: React.FC = () => {
+  const { user } = useAuth();
   const { profile } = useUserProfile();
   const [ greeting, setGreeting ] = useState(getGreeting());
+  const [prefs, setPrefs] = useState<ArmedNode>(
+      armedNodes
+    );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setGreeting(getGreeting());
-    }, 60_000);
-    return () => clearInterval(interval);
-    }, []);
+useEffect(() => {
+  const interval = setInterval(() => {
+    setGreeting(getGreeting());
+  }, 60_000);
+  return () => clearInterval(interval);
+}, []);
+
+const handleToggle = async (key: keyof ArmedNode, value: boolean) => {
+    if (!user) return;
+    const updated = { ...prefs, [key]: value };
+    setPrefs(updated);
+}
 
   return (
     
@@ -50,7 +63,11 @@ const HomeScreen: React.FC = () => {
               />
               <Text style={styles.statusText}>No movement detected</Text>
             </View>
-
+            <FinalToggleRow
+              label={prefs.armed ? "All Armed" : "All Disarmed"}
+              value={prefs.armed}
+              onValueChange={(v) => handleToggle("armed", v)}
+            />
           </View>
     </View>
   );
