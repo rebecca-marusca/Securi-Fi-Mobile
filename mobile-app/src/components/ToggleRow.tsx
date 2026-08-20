@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: "SF-Pro-Text-Regular",
-    fontSize: 16,
+    fontSize: 15,
     color: colors.text,
     paddingHorizontal: 10
   },

@@ -26,7 +26,7 @@ export function SettingsRow({
         <SymbolView
           name="chevron.right"
           size={15}
-          tintColor={colors.darkGreen}
+          tintColor={colors.accent}
           weight="bold"
         />
       )}
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   label: {
     flex: 1,
     fontFamily: "SF-Pro-Text-Semibold",
-    fontSize: 18,
+    fontSize: 17,
     color: colors.text,
   },
 });
