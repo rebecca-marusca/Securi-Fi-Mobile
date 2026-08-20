@@ -58,5 +58,6 @@ const styles = StyleSheet.create({
     fontFamily: "SF-Pro-Text-Regular",
     fontSize: 16,
     color: colors.text,
+    paddingHorizontal: 10
   },
 });
