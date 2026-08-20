@@ -28,6 +28,23 @@ export const defaultNotificationPrefs: NotificationPrefs = {
   productUpdates: false,
 };
 
+export type ArmedNode = { armed: boolean; text: string };
+
+export const armedNodes: ArmedNode = { armed: true, text: "All ARMED"};
+
+export type RoomNode = {
+  id: string;
+  name: string;
+  x: number;
+  y: number;
+}
+
+export const DEFAULT_NODES: RoomNode[] = [
+  { id: 'kitchen', name: 'kitchen', x: 0.75, y: 0.35 },
+  { id: 'living-room', name: 'living room', x: 0.25, y: 0.35 },
+  { id: 'bedroom', name: 'bedroom', x: 0.25, y: 0.75 },
+];
+
 export type UserProfile = {
   email: string;
   phoneNumber: string;

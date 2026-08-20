@@ -1,10 +1,15 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect }  from 'react';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import AnimatedWaveHeader from '../../components/AnimatedWaveHeader';
 import { SafeAreaView } from "react-native-safe-area-context";
 import SecuriFiTextLightGreen from "../../../assets/images/securi-fi-text-lightGreen.png";
 import { colors } from "@/theme/colors";
+import RoomNodeGraph from '../../components/RoomNodeGraph';
+import { LinearGradient } from "expo-linear-gradient";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { FinalToggleRow } from "@/components/ToggleRow";
+import { ArmedNode, armedNodes } from '@/services/userProfile';
+import { useAuth } from '@/contexts/AuthContext';
 
 function getGreeting(): string {
   const hour = new Date().getHours();
@@ -14,34 +19,56 @@ function getGreeting(): string {
 }
 
 const HomeScreen: React.FC = () => {
+  const { user } = useAuth();
   const { profile } = useUserProfile();
   const [ greeting, setGreeting ] = useState(getGreeting());
+  const [prefs, setPrefs] = useState<ArmedNode>(
+      armedNodes
+    );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setGreeting(getGreeting());
-    }, 60_000);
-    return () => clearInterval(interval);
-    }, []);
+useEffect(() => {
+  const interval = setInterval(() => {
+    setGreeting(getGreeting());
+  }, 60_000);
+  return () => clearInterval(interval);
+}, []);
+
+const handleToggle = async (key: keyof ArmedNode, value: boolean) => {
+    if (!user) return;
+    const updated = { ...prefs, [key]: value };
+    setPrefs(updated);
+}
 
   return (
     
     <View style={styles.container}>
       <AnimatedWaveHeader/>
-          <ScrollView contentContainerStyle={styles.scrollContent}>
+          <View style={styles.content}>
             <View style={styles.headerTextContainer}>
               <Text style={styles.subtitle}>{greeting}, {profile?.displayName}! </Text>
             </View>
 
-            <View style={styles.dashboardCard}>
-              <Text style={styles.cardPlaceholderText}>[ Room Map / Controls ]</Text>
-            </View>
+            <RoomNodeGraph
+              initialNodes={[
+                { id: 'kitchen', name: 'kitchen', x: 0.28, y: 0.45 },
+                { id: 'living-room', name: 'living room', x: 0.72, y: 0.28 },
+                { id: 'bedroom', name: 'bedroom', x: 0.58, y: 0.75 },
+              ]}
+            />
 
             <View style={styles.statusPill}>
+              <LinearGradient
+                colors={["rgba(5, 33, 2, 0.25)", "transparent"]}
+                style={styles.innerShadowGradient}
+              />
               <Text style={styles.statusText}>No movement detected</Text>
             </View>
-
-          </ScrollView>
+            <FinalToggleRow
+              label={prefs.armed ? "All Armed" : "All Disarmed"}
+              value={prefs.armed}
+              onValueChange={(v) => handleToggle("armed", v)}
+            />
+          </View>
     </View>
   );
 };
@@ -51,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.base,
   },
-  scrollContent: {
+  content: {
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingTop: 100,
@@ -82,16 +109,25 @@ const styles = StyleSheet.create({
     fontFamily: "SF-Pro-Text-Semibold",
   },
   statusPill: {
-    backgroundColor: colors.accent,
+    backgroundColor: 'rgb(64, 144, 79)',
     paddingVertical: 10,
     paddingHorizontal: 24,
     borderRadius: 12,
-    marginTop: -20,
+    marginTop: -3,
   },
   statusText: {
     color: colors.base,
     fontFamily: "SF-Pro-Text-Semibold",
     fontSize: 15,
+  },
+    innerShadowGradient: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 10,
+    borderTopLeftRadius: 14,
+    borderTopRightRadius: 14,
   },
 });
 
